@@ -1,13 +1,18 @@
 /* ============================================================
    Citizen39 — client-side hash router + contact form.
    No dependencies. Content lives in the HTML; this only toggles
-   which <section.page> is visible and reflects it in the URL hash.
+   which <section.page> is visible, reflects it in the URL hash,
+   and drives the contact form's success state.
    ============================================================ */
 
 (function () {
   'use strict';
 
   var PAGES = ['home', 'about', 'services', 'contact', 'privacy', 'terms', 'cookies'];
+
+  // The closing CTA band is shared chrome, hidden on Contact (per spec) and on
+  // the utility legal pages where a sales CTA would be out of place.
+  var NO_CTA = { contact: true, privacy: true, terms: true, cookies: true };
 
   /* ---- Router ------------------------------------------------ */
 
@@ -23,11 +28,15 @@
       if (section) section.classList.toggle('active', p === page);
     });
 
-    // Active nav underline — drive every nav link that points at this page.
+    // Active nav underline — drive every text nav link that points at this page.
     var links = document.querySelectorAll('.nav-link[data-nav]');
     for (var i = 0; i < links.length; i++) {
       links[i].classList.toggle('active', links[i].getAttribute('data-nav') === page);
     }
+
+    // Show/hide the shared closing CTA band.
+    var cta = document.getElementById('cta-band');
+    if (cta) cta.classList.toggle('hidden', !!NO_CTA[page]);
 
     // Reset the contact form's success state whenever we (re)enter a page,
     // mirroring the prototype's go() which clears `submitted` on navigation.
@@ -79,8 +88,8 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // Native HTML5 validation (required + type=email) — we set novalidate on
-      // the form so we can trigger the browser UI explicitly and bail if invalid.
+      // Native HTML5 validation (required + type=email). The form carries
+      // `novalidate` so we trigger the browser UI explicitly and bail if invalid.
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
@@ -91,8 +100,8 @@
       var name = (form.elements['name'].value || '').trim();
       var first = name ? name.split(/\s+/)[0] : '';
       if (successMsg) {
-        successMsg.textContent = 'Thanks' + (first ? ', ' + first : '') +
-          " — we've got it. Someone from the Citizen39 team will reach out within one business day.";
+        successMsg.textContent = 'Thank you' + (first ? ', ' + first : '') +
+          ' — a member of the Citizen39 team will be in touch within one business day.';
       }
 
       form.classList.add('hidden');
