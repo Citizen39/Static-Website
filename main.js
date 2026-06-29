@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  var PAGES = ['home', 'about', 'services', 'contact'];
+  var PAGES = ['home', 'about', 'services', 'contact', 'privacy', 'terms', 'cookies'];
 
   /* ---- Router ------------------------------------------------ */
 

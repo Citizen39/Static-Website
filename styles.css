@@ -633,6 +633,66 @@ textarea::placeholder { color: #6a6a6a; }
 .services-cta { margin-top: 56px; }
 
 /* ============================================================
+   Legal pages (Privacy, Terms, Cookies)
+   ============================================================ */
+
+.legal { max-width: 760px; }
+.legal__meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  margin: -32px 0 36px;
+}
+.legal__lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #c4c4c4;
+  margin: 0 0 40px;
+}
+.legal h2 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin: 40px 0 14px;
+}
+.legal p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #b6b6b6;
+  margin: 0 0 16px;
+}
+.legal ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+.legal li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #b6b6b6;
+  margin-bottom: 10px;
+}
+.legal li::marker { color: var(--accent-cyan); }
+.legal strong { color: var(--text); font-weight: 700; }
+.legal a {
+  color: var(--accent-cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal a:hover { color: var(--accent-cyan-hover); }
+.legal__contact {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+  border-left: 3px solid var(--accent-orange);
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+/* ============================================================
    Contact
    ============================================================ */
 
